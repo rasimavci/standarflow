@@ -34,6 +34,7 @@ export default function ApplicationForm() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [universities, setUniversities] = useState<University[]>([]);
   const [loadingUniversities, setLoadingUniversities] = useState(false);
+  const [universityError, setUniversityError] = useState(false);
 
   // Fetch countries on mount
   useEffect(() => {
