@@ -142,7 +142,7 @@ export default function InvestorApplication() {
                   Application Submitted!
                 </h3>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-                  Thank you for joining our investor network. We'll review your profile and send you access details within 24 hours.
+                  Thank you for joining our investor network. We&apos;ll review your profile and send you access details within 24 hours.
                 </p>
                 <Link
                   href="/"

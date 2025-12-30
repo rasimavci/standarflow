@@ -122,7 +122,7 @@ export default function ApplicationForm() {
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
               Fill out the form below and upload your pitch deck to get started. 
-              We'll review your application and connect you with potential investors.
+              We&apos;ll review your application and connect you with potential investors.
             </p>
           </div>
 
@@ -133,7 +133,7 @@ export default function ApplicationForm() {
                 Application Submitted!
               </h3>
               <p className="text-xl text-gray-600 dark:text-gray-400">
-                Thank you for applying. We'll review your application and get back to you within 48 hours.
+                Thank you for applying. We&apos;ll review your application and get back to you within 48 hours.
               </p>
             </div>
           ) : (
