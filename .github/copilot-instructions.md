@@ -1,4 +1,4 @@
-# standarflow - Investor-Founder Platform Project
+# standardflow - Investor-Founder Platform Project
 
 ## Project Overview
 Modern investor-founder matching platform built with Next.js and TypeScript.

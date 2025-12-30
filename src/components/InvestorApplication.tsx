@@ -110,7 +110,7 @@ export default function InvestorApplication() {
             <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">SF</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">standarflow</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">standardflow</span>
           </Link>
           <Link 
             href="/"

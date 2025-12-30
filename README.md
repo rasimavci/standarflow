@@ -1,4 +1,4 @@
-# standarflow - Investor-Founder Platform
+# standardflow - Investor-Founder Platform
 
 A modern platform  connecting innovative founders with strategic investors. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
@@ -156,8 +156,8 @@ This project is licensed under the MIT License.
 
 ## Support
 
-For support or questions, please contact [support@standarflow.com](mailto:support@standarflow.com)
+For support or questions, please contact [support@standardflow.com](mailto:support@standardflow.com)
 
 ---
 
-Built with ❤️ by the standarflow Team
+Built with ❤️ by the standardflow Team
