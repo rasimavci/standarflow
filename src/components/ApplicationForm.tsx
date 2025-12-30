@@ -60,15 +60,17 @@ export default function ApplicationForm() {
           countryName = "Turkiye";
         }
         
-        fetch(`http://universities.hipolabs.com/search?country=${encodeURIComponent(countryName)}`)
+        fetch(`/api/universities?country=${encodeURIComponent(countryName)}`)
           .then(res => res.json())
           .then(data => {
             setUniversities(data);
             setLoadingUniversities(false);
+            setUniversityError(false);
           })
           .catch(err => {
             console.error('Error fetching universities:', err);
             setLoadingUniversities(false);
+            setUniversityError(true);
           });
       }
     } else {
