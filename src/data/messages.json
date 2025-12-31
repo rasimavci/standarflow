@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "id": "1767185622547",
+    "conversationId": "john.smith@neuralflow.ai_michael.rodriguez@a16z.com",
+    "senderId": 2,
+    "senderName": "Michael Rodriguez",
+    "senderEmail": "michael.rodriguez@a16z.com",
+    "senderAvatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
+    "senderRole": "investor",
+    "recipientId": 1,
+    "recipientName": "John Smith",
+    "recipientEmail": "john.smith@neuralflow.ai",
+    "recipientAvatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+    "recipientRole": "founder",
+    "message": "Hi John Smith, I'm interested in connecting with you!",
+    "timestamp": "2025-12-31T12:53:42.547Z",
+    "read": false,
+    "isConnectionRequest": true,
+    "requestStatus": "pending"
+  }
+]

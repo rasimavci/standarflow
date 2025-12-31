@@ -389,9 +389,92 @@ export default function MatchMaking() {
     }, 300);
   };
 
-  const handleConnect = () => {
-    alert("Connection request sent!");
-    closeModal();
+  const handleConnect = async () => {
+    if (!user) {
+      alert('Please sign in to send connection requests');
+      return;
+    }
+
+    // Determine the recipient based on selected modal
+    let recipient = null;
+    let conversationId = '';
+
+    if (selectedFounder) {
+      recipient = selectedFounder;
+      conversationId = [user.email, selectedFounder.email].sort().join('_');
+    } else if (selectedInvestor) {
+      recipient = selectedInvestor;
+      conversationId = [user.email, selectedInvestor.email].sort().join('_');
+    }
+
+    if (!recipient) {
+      alert('No recipient selected');
+      return;
+    }
+
+    console.log('handleConnect - User:', user);
+    console.log('handleConnect - Recipient:', recipient);
+    console.log('handleConnect - ConversationId:', conversationId);
+
+    // Fetch existing messages
+    const messagesRes = await fetch('/api/messages');
+    const messages = await messagesRes.json();
+
+    console.log('handleConnect - Existing messages:', messages);
+
+    // Check if connection request already exists
+    const requestExists = messages.some(
+      (m: any) => m.conversationId === conversationId && m.isConnectionRequest === true
+    );
+
+    console.log('handleConnect - Request exists:', requestExists);
+
+    if (requestExists) {
+      alert('Connection request already sent!');
+      closeModal();
+      return;
+    }
+
+    // Create connection request message
+    const connectionRequest = {
+      id: Date.now().toString(),
+      conversationId,
+      senderId: user.id,
+      senderName: user.name,
+      senderEmail: user.email,
+      senderAvatar: user.avatar,
+      senderRole: user.role,
+      recipientId: recipient.id,
+      recipientName: recipient.name,
+      recipientEmail: recipient.email,
+      recipientAvatar: recipient.avatar,
+      recipientRole: selectedFounder ? 'founder' : 'investor',
+      message: `Hi ${recipient.name}, I'm interested in connecting with you!`,
+      timestamp: new Date().toISOString(),
+      read: false,
+      isConnectionRequest: true,
+      requestStatus: 'pending',
+    };
+
+    console.log('handleConnect - Creating connection request:', connectionRequest);
+
+    // Save to API
+    const response = await fetch('/api/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'add', message: connectionRequest }),
+    });
+
+    const result = await response.json();
+    console.log('handleConnect - API response:', result);
+
+    if (result.success) {
+      alert('Connection request sent successfully!');
+      closeModal();
+      router.push('/requests');
+    } else {
+      alert('Failed to send connection request');
+    }
   };
 
   return (

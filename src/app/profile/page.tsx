@@ -13,6 +13,9 @@ export default function ProfilePage() {
   const [profileData, setProfileData] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState<any>(null);
+  const [countries, setCountries] = useState<any[]>([]);
+  const [universities, setUniversities] = useState<any[]>([]);
+  const [loadingUniversities, setLoadingUniversities] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -20,38 +23,96 @@ export default function ProfilePage() {
       return;
     }
 
-    // Load profile data from localStorage
-    if (user?.role === "founder") {
-      const founders = JSON.parse(localStorage.getItem("founders") || "[]");
+    loadProfileData();
+  }, [user, isAuthenticated, router]);
+
+  const loadProfileData = async () => {
+    if (!user) return;
+
+    if (user.role === "founder") {
+      const res = await fetch('/api/founders');
+      const founders = await res.json();
       const founder = founders.find((f: any) => f.email === user.email);
       setProfileData(founder);
       setEditedData(founder);
-    } else if (user?.role === "investor") {
-      const investors = JSON.parse(localStorage.getItem("investors") || "[]");
+    } else if (user.role === "investor") {
+      const res = await fetch('/api/investors');
+      const investors = await res.json();
       const investor = investors.find((i: any) => i.email === user.email);
       setProfileData(investor);
       setEditedData(investor);
     }
-  }, [user, isAuthenticated, router]);
+  };
 
-  const handleSave = () => {
+  // Load countries when editing starts
+  useEffect(() => {
+    if (isEditing && countries.length === 0) {
+      fetch('https://restcountries.com/v3.1/all?fields=name')
+        .then(res => res.json())
+        .then(data => {
+          const sortedCountries = data
+            .map((country: any) => country.name.common)
+            .sort();
+          setCountries(sortedCountries);
+        })
+        .catch(err => console.error('Error loading countries:', err));
+    }
+  }, [isEditing]);
+
+  // Load universities when country changes
+  useEffect(() => {
+    if (isEditing && editedData?.country) {
+      setLoadingUniversities(true);
+      fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(editedData.country)}?fields=cca2`)
+        .then(res => res.json())
+        .then(data => {
+          const countryCode = data[0]?.cca2;
+          if (countryCode) {
+            return fetch(`/api/universities?country=${countryCode}`);
+          }
+          throw new Error('Country code not found');
+        })
+        .then(res => res.json())
+        .then(data => {
+          setUniversities(data);
+          setLoadingUniversities(false);
+        })
+        .catch(err => {
+          console.error('Error loading universities:', err);
+          setUniversities([]);
+          setLoadingUniversities(false);
+        });
+    }
+  }, [isEditing, editedData?.country]);
+
+  const handleSave = async () => {
     if (!editedData || !user) return;
 
     if (user.role === "founder") {
-      const founders = JSON.parse(localStorage.getItem("founders") || "[]");
+      const res = await fetch('/api/founders');
+      const founders = await res.json();
       const index = founders.findIndex((f: any) => f.email === user.email);
       if (index >= 0) {
         founders[index] = editedData;
-        localStorage.setItem("founders", JSON.stringify(founders));
+        await fetch('/api/founders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ founders }),
+        });
         setProfileData(editedData);
         setIsEditing(false);
       }
     } else if (user.role === "investor") {
-      const investors = JSON.parse(localStorage.getItem("investors") || "[]");
+      const res = await fetch('/api/investors');
+      const investors = await res.json();
       const index = investors.findIndex((i: any) => i.email === user.email);
       if (index >= 0) {
         investors[index] = editedData;
-        localStorage.setItem("investors", JSON.stringify(investors));
+        await fetch('/api/investors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ investors }),
+        });
         setProfileData(editedData);
         setIsEditing(false);
       }
@@ -249,7 +310,47 @@ export default function ProfilePage() {
                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       University
                     </label>
-                    <p className="text-gray-900 dark:text-white">{profileData?.university || "N/A"}</p>
+                    {isEditing ? (
+                      <div className="space-y-2">
+                        <select
+                          value={editedData?.country || ""}
+                          onChange={(e) => {
+                            setEditedData({ ...editedData, country: e.target.value, university: "" });
+                            setUniversities([]);
+                          }}
+                          className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                        >
+                          <option value="">Select Country</option>
+                          {countries.map((country) => (
+                            <option key={country} value={country}>
+                              {country}
+                            </option>
+                          ))}
+                        </select>
+                        {editedData?.country && (
+                          <select
+                            value={editedData?.university || ""}
+                            onChange={(e) => setEditedData({ ...editedData, university: e.target.value })}
+                            disabled={loadingUniversities}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:opacity-50"
+                          >
+                            <option value="">
+                              {loadingUniversities ? "Loading universities..." : "Select University"}
+                            </option>
+                            {universities.map((uni: any) => (
+                              <option key={uni.name} value={uni.name}>
+                                {uni.name}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-gray-900 dark:text-white">{profileData?.country || "N/A"}</p>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{profileData?.university || "N/A"}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
