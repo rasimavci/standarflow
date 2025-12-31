@@ -22,7 +22,7 @@ export default function SigninPage() {
       if (email === "admin@standardflow.ai") {
         router.push("/admin");
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Login failed:", error);
