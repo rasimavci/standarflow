@@ -19,6 +19,7 @@ interface Investor {
   bio: string;
   portfolio: string[];
   dealsCompleted: number;
+  favorites?: number[];
 }
 
 interface Founder {
@@ -34,6 +35,7 @@ interface Founder {
   description: string;
   traction: string;
   team: string;
+  favorites?: number[];
 }
 
 export default function MatchMaking() {
