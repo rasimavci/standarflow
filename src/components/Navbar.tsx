@@ -1,14 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { Menu, X, ChevronDown, User, Settings, LogOut, Bell, Heart, Shield } from "lucide-react";
+import { Menu, X, ChevronDown, User, Settings, LogOut, Bell, Heart, Shield, MessageSquare, UserPlus } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [requestCount, setRequestCount] = useState(0);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const updateUnreadCount = () => {
+      const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+      const unread = messages.filter(
+        (m: any) => m.recipientEmail === user.email && !m.read
+      ).length;
+      setUnreadCount(unread);
+
+      // Count connection requests for investors
+      if (user.role === 'investor') {
+        const founderMessages = messages.filter(
+          (m: any) => m.recipientEmail === user.email && m.senderRole === 'founder'
+        );
+        const conversationIds = new Set(founderMessages.map((m: any) => m.conversationId));
+        setRequestCount(conversationIds.size);
+      }
+    };
+
+    updateUnreadCount();
+    const interval = setInterval(updateUnreadCount, 5000); // Check every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [user]);
 
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
@@ -35,6 +64,21 @@ export default function Navbar() {
                 Saved
               </Link>
             )}
+            {isAuthenticated && (
+              <Link href="/messages" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+                Messages
+              </Link>
+            )}
+            {isAuthenticated && user?.role === 'investor' && (
+              <Link href="/requests" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition relative">
+                Requests
+                {requestCount > 0 && (
+                  <span className="absolute -top-1 -right-2 min-w-[18px] h-[18px] flex items-center justify-center bg-blue-600 text-white text-xs rounded-full px-1">
+                    {requestCount > 9 ? '9+' : requestCount}
+                  </span>
+                )}
+              </Link>
+            )}
             <Link href="/investors/apply" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
               For Investors
             </Link>
@@ -53,10 +97,14 @@ export default function Navbar() {
             {isAuthenticated && user ? (
               <>
                 {/* Notifications */}
-                <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative">
+                <Link href="/messages" className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative">
                   <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
+                  {unreadCount > 0 && (
+                    <span className="absolute top-1 right-1 min-w-[18px] h-[18px] flex items-center justify-center bg-red-500 text-white text-xs rounded-full px-1">
+                      {unreadCount > 9 ? '9+' : unreadCount}
+                    </span>
+                  )}
+                </Link>
 
                 {/* Profile Dropdown */}
                 <div className="relative">
@@ -64,9 +112,11 @@ export default function Navbar() {
                     onClick={() => setProfileMenuOpen(!profileMenuOpen)}
                     className="flex items-center space-x-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                   >
-                    <img
-                      src={user.avatar}
-                      alt={user.name}
+                    <Image
+                      src={user.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'}
+                      alt={user.name || 'User avatar'}
+                      width={32}
+                      height={32}
                       className="w-8 h-8 rounded-full"
                     />
                     <div className="text-left">
@@ -107,6 +157,23 @@ export default function Navbar() {
                         <Heart className="w-4 h-4" />
                         Saved
                       </Link>
+                      {user.role === 'investor' && (
+                        <Link
+                          href="/requests"
+                          className="flex items-center justify-between gap-3 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          onClick={() => setProfileMenuOpen(false)}
+                        >
+                          <div className="flex items-center gap-3">
+                            <UserPlus className="w-4 h-4" />
+                            Requests
+                          </div>
+                          {requestCount > 0 && (
+                            <span className="bg-blue-600 text-white text-xs rounded-full px-2 py-0.5">
+                              {requestCount}
+                            </span>
+                          )}
+                        </Link>
+                      )}
                       <Link
                         href="/admin"
                         className="flex items-center gap-3 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -198,6 +265,34 @@ export default function Navbar() {
               )}
               {isAuthenticated && (
                 <Link
+                  href="/messages"
+                  className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex items-center justify-between"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>Messages</span>
+                  {unreadCount > 0 && (
+                    <span className="bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
+                      {unreadCount > 9 ? '9+' : unreadCount}
+                    </span>
+                  )}
+                </Link>
+              )}
+              {isAuthenticated && user?.role === 'investor' && (
+                <Link
+                  href="/requests"
+                  className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex items-center justify-between"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>Connection Requests</span>
+                  {requestCount > 0 && (
+                    <span className="bg-blue-600 text-white text-xs rounded-full px-2 py-0.5">
+                      {requestCount > 9 ? '9+' : requestCount}
+                    </span>
+                  )}
+                </Link>
+              )}
+              {isAuthenticated && (
+                <Link
                   href="/admin"
                   className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
                   onClick={() => setMobileMenuOpen(false)}
@@ -232,7 +327,7 @@ export default function Navbar() {
                 <>
                   <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 mt-2">
                     <div className="flex items-center gap-3 mb-3">
-                      <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full" />
+                      <Image src={user.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=default'} alt={user.name || 'User avatar'} width={40} height={40} className="w-10 h-10 rounded-full" />
                       <div>
                         <p className="text-sm font-semibold text-gray-900 dark:text-white">{user.name}</p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>

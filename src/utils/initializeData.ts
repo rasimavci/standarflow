@@ -1,5 +1,6 @@
 import foundersData from '@/data/founders.json';
 import investorsData from '@/data/investors.json';
+import messagesData from '@/data/messages.json';
 
 export const initializeLocalStorage = () => {
   if (typeof window === 'undefined') return;
@@ -38,5 +39,10 @@ export const initializeLocalStorage = () => {
     });
     
     localStorage.setItem('investors', JSON.stringify(investors));
+  }
+
+  // Initialize messages data if not exists
+  if (!localStorage.getItem('messages')) {
+    localStorage.setItem('messages', JSON.stringify(messagesData));
   }
 };

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { Search, Users, Building2, MapPin, DollarSign, TrendingUp, Briefcase, X, Mail, ExternalLink, Heart } from "lucide-react";
+import { Search, Users, Building2, MapPin, DollarSign, TrendingUp, Briefcase, X, Mail, ExternalLink, Heart, MessageSquare } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Investor {
   id: number;
@@ -36,6 +38,7 @@ interface Founder {
 
 export default function MatchMaking() {
   const { user } = useAuth();
+  const router = useRouter();
   const [viewMode, setViewMode] = useState<"investors" | "founders">("investors");
   const [investors, setInvestors] = useState<Investor[]>([]);
   const [founders, setFounders] = useState<Founder[]>([]);
@@ -55,87 +58,166 @@ export default function MatchMaking() {
   const [founderStage, setFounderStage] = useState("");
   const [founderLocation, setFounderLocation] = useState("");
 
-  // Load data from localStorage
+  // Load data from API
   useEffect(() => {
-    const loadedInvestors = JSON.parse(localStorage.getItem('investors') || '[]');
-    const loadedFounders = JSON.parse(localStorage.getItem('founders') || '[]');
-    setInvestors(loadedInvestors);
-    setFounders(loadedFounders);
+    const loadData = async () => {
+      const investorsRes = await fetch('/api/investors');
+      const foundersRes = await fetch('/api/founders');
+      const loadedInvestors = await investorsRes.json();
+      const loadedFounders = await foundersRes.json();
+      setInvestors(loadedInvestors);
+      setFounders(loadedFounders);
+    };
+    loadData();
   }, []);
 
   // Favorite functions
-  const toggleInvestorFavorite = (investorId: number) => {
+  const toggleInvestorFavorite = async (investorId: number) => {
     if (!user) {
       alert('Please sign in to add favorites');
       return;
     }
 
-    const foundersData = JSON.parse(localStorage.getItem('founders') || '[]');
+    // Check if user is a founder
+    const foundersRes = await fetch('/api/founders');
+    const foundersData = await foundersRes.json();
     const founderIndex = foundersData.findIndex((f: any) => f.email === user.email);
     
-    if (founderIndex === -1) {
-      alert('Founder profile not found');
+    if (founderIndex !== -1) {
+      // User is a founder favoriting an investor
+      const currentFavorites = foundersData[founderIndex].favorites || [];
+      const isFavorite = currentFavorites.includes(investorId);
+      
+      if (isFavorite) {
+        foundersData[founderIndex].favorites = currentFavorites.filter((id: number) => id !== investorId);
+      } else {
+        foundersData[founderIndex].favorites = [...currentFavorites, investorId];
+      }
+      
+      await fetch('/api/founders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ founders: foundersData }),
+      });
+      
+      setFounders(foundersData);
       return;
     }
 
-    const currentFavorites = foundersData[founderIndex].favorites || [];
-    const isFavorite = currentFavorites.includes(investorId);
+    // Check if user is an investor
+    const investorsRes = await fetch('/api/investors');
+    const investorsData = await investorsRes.json();
+    const investorIndex = investorsData.findIndex((inv: any) => inv.email === user.email);
     
-    if (isFavorite) {
-      foundersData[founderIndex].favorites = currentFavorites.filter((id: number) => id !== investorId);
-    } else {
-      foundersData[founderIndex].favorites = [...currentFavorites, investorId];
+    if (investorIndex !== -1) {
+      // User is an investor favoriting another investor
+      const currentFavorites = investorsData[investorIndex].favorites || [];
+      const isFavorite = currentFavorites.includes(investorId);
+      
+      if (isFavorite) {
+        investorsData[investorIndex].favorites = currentFavorites.filter((id: number) => id !== investorId);
+      } else {
+        investorsData[investorIndex].favorites = [...currentFavorites, investorId];
+      }
+      
+      await fetch('/api/investors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ investors: investorsData }),
+      });
+      
+      setInvestors(investorsData);
+      return;
     }
-    
-    localStorage.setItem('founders', JSON.stringify(foundersData));
-    
-    // Refresh data
-    const loadedFounders = JSON.parse(localStorage.getItem('founders') || '[]');
-    setFounders(loadedFounders);
+
+    console.error('User not found in either founders or investors list:', user.email);
+    alert('Profile not found. Please sign in again.');
   };
 
-  const toggleFounderFavorite = (founderId: number) => {
+  const toggleFounderFavorite = async (founderId: number) => {
     if (!user) {
       alert('Please sign in to add favorites');
       return;
     }
 
-    const investorsData = JSON.parse(localStorage.getItem('investors') || '[]');
+    // Check if user is an investor
+    const investorsRes = await fetch('/api/investors');
+    const investorsData = await investorsRes.json();
     const investorIndex = investorsData.findIndex((inv: any) => inv.email === user.email);
     
-    if (investorIndex === -1) {
-      alert('Investor profile not found');
+    if (investorIndex !== -1) {
+      // User is an investor favoriting a founder
+      const currentFavorites = investorsData[investorIndex].favorites || [];
+      const isFavorite = currentFavorites.includes(founderId);
+      
+      if (isFavorite) {
+        investorsData[investorIndex].favorites = currentFavorites.filter((id: number) => id !== founderId);
+      } else {
+        investorsData[investorIndex].favorites = [...currentFavorites, founderId];
+      }
+      
+      await fetch('/api/investors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ investors: investorsData }),
+      });
+      
+      setInvestors(investorsData);
       return;
     }
 
-    const currentFavorites = investorsData[investorIndex].favorites || [];
-    const isFavorite = currentFavorites.includes(founderId);
+    // Check if user is a founder
+    const foundersRes = await fetch('/api/founders');
+    const foundersData = await foundersRes.json();
+    const founderIndex = foundersData.findIndex((f: any) => f.email === user.email);
     
-    if (isFavorite) {
-      investorsData[investorIndex].favorites = currentFavorites.filter((id: number) => id !== founderId);
-    } else {
-      investorsData[investorIndex].favorites = [...currentFavorites, founderId];
+    if (founderIndex !== -1) {
+      // User is a founder favoriting another founder
+      const currentFavorites = foundersData[founderIndex].favorites || [];
+      const isFavorite = currentFavorites.includes(founderId);
+      
+      if (isFavorite) {
+        foundersData[founderIndex].favorites = currentFavorites.filter((id: number) => id !== founderId);
+      } else {
+        foundersData[founderIndex].favorites = [...currentFavorites, founderId];
+      }
+      
+      await fetch('/api/founders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ founders: foundersData }),
+      });
+      
+      setFounders(foundersData);
+      return;
     }
-    
-    localStorage.setItem('investors', JSON.stringify(investorsData));
-    
-    // Refresh data
-    const loadedInvestors = JSON.parse(localStorage.getItem('investors') || '[]');
-    setInvestors(loadedInvestors);
+
+    console.error('User not found in either investors or founders list:', user.email);
+    alert('Profile not found. Please sign in again.');
   };
 
   const isInvestorFavorite = (investorId: number): boolean => {
     if (!user) return false;
-    const foundersData = JSON.parse(localStorage.getItem('founders') || '[]');
-    const founder = foundersData.find((f: any) => f.email === user.email);
-    return founder?.favorites?.includes(investorId) || false;
+    // Check if user is a founder
+    const founder = founders.find((f: any) => f.email === user.email);
+    if (founder) {
+      return founder?.favorites?.includes(investorId) || false;
+    }
+    // Check if user is an investor
+    const investor = investors.find((inv: any) => inv.email === user.email);
+    return investor?.favorites?.includes(investorId) || false;
   };
 
   const isFounderFavorite = (founderId: number): boolean => {
     if (!user) return false;
-    const investorsData = JSON.parse(localStorage.getItem('investors') || '[]');
-    const investor = investorsData.find((inv: any) => inv.email === user.email);
-    return investor?.favorites?.includes(founderId) || false;
+    // Check if user is an investor
+    const investor = investors.find((inv: any) => inv.email === user.email);
+    if (investor) {
+      return investor?.favorites?.includes(founderId) || false;
+    }
+    // Check if user is a founder
+    const founder = founders.find((f: any) => f.email === user.email);
+    return founder?.favorites?.includes(founderId) || false;
   };
 
   // Filter investors
@@ -188,10 +270,115 @@ export default function MatchMaking() {
     setIsModalOpen(true);
   };
 
+  const sendMessageToInvestor = async (investor: Investor) => {
+    if (!user) return;
+
+    const conversationId = [user.email, investor.email].sort().join('_');
+    
+    // Fetch messages from API
+    const messagesRes = await fetch('/api/messages');
+    const messages = await messagesRes.json();
+    
+    console.log('Before sending - conversationId:', conversationId);
+    console.log('Before sending - messages:', messages);
+    console.log('User sending:', user);
+    console.log('Investor receiving:', investor);
+    
+    // Check if connection request already exists
+    const requestExists = messages.some(
+      (m: any) => m.conversationId === conversationId && m.isConnectionRequest === true
+    );
+    
+    console.log('Request exists:', requestExists);
+    
+    if (!requestExists) {
+      // Create initial connection request message
+      const initialMessage = {
+        id: Date.now().toString(),
+        conversationId,
+        senderId: user.id,
+        senderName: user.name,
+        senderEmail: user.email,
+        senderAvatar: user.avatar,
+        senderRole: user.role,
+        recipientId: investor.id,
+        recipientName: investor.name,
+        recipientEmail: investor.email,
+        recipientAvatar: investor.avatar,
+        recipientRole: 'investor',
+        message: `Hi ${investor.name}, I'm interested in connecting with you!`,
+        timestamp: new Date().toISOString(),
+        read: false,
+        isConnectionRequest: true,
+        requestStatus: 'pending',
+      };
+      console.log('Creating new message:', initialMessage);
+      
+      // Save to API
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'add', message: initialMessage }),
+      });
+      
+      const result = await response.json();
+      console.log('API response:', result);
+    }
+    
+    router.push('/messages');
+  };
+
   const openFounderModal = (founder: Founder) => {
     setSelectedFounder(founder);
     setSelectedInvestor(null);
     setIsModalOpen(true);
+  };
+
+  const sendMessageToFounder = async (founder: Founder) => {
+    if (!user) return;
+
+    const conversationId = [user.email, founder.email].sort().join('_');
+    
+    // Fetch messages from API
+    const messagesRes = await fetch('/api/messages');
+    const messages = await messagesRes.json();
+    
+    // Check if connection request already exists
+    const requestExists = messages.some(
+      (m: any) => m.conversationId === conversationId && m.isConnectionRequest === true
+    );
+    
+    if (!requestExists) {
+      // Create initial connection request message
+      const initialMessage = {
+        id: Date.now().toString(),
+        conversationId,
+        senderId: user.id,
+        senderName: user.name,
+        senderEmail: user.email,
+        senderAvatar: user.avatar,
+        senderRole: user.role,
+        recipientId: founder.id,
+        recipientName: founder.name,
+        recipientEmail: founder.email,
+        recipientAvatar: founder.avatar,
+        recipientRole: 'founder',
+        message: `Hi ${founder.name}, I'm interested in your startup ${founder.company}!`,
+        timestamp: new Date().toISOString(),
+        read: false,
+        isConnectionRequest: true,
+        requestStatus: 'pending',
+      };
+      
+      // Save to API
+      await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'add', message: initialMessage }),
+      });
+    }
+    
+    router.push('/messages');
   };
 
   const closeModal = () => {
@@ -322,9 +509,11 @@ export default function MatchMaking() {
                   className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 border border-gray-200 dark:border-gray-700"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <img
+                    <Image
                       src={investor.avatar}
                       alt={investor.name}
+                      width={64}
+                      height={64}
                       className="w-16 h-16 rounded-full"
                     />
                     <div className="flex-1">
@@ -464,9 +653,11 @@ export default function MatchMaking() {
                   className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 border border-gray-200 dark:border-gray-700"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <img
+                    <Image
                       src={founder.avatar}
                       alt={founder.name}
+                      width={64}
+                      height={64}
                       className="w-16 h-16 rounded-full"
                     />
                     <div className="flex-1">
@@ -568,9 +759,11 @@ export default function MatchMaking() {
             {selectedInvestor && (
               <div className="p-6">
                 <div className="flex items-start gap-6 mb-6">
-                  <img
+                  <Image
                     src={selectedInvestor.avatar}
                     alt={selectedInvestor.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full"
                   />
                   <div className="flex-1">
@@ -661,6 +854,19 @@ export default function MatchMaking() {
                       <strong className="text-gray-900 dark:text-white">{selectedInvestor.dealsCompleted}</strong> deals completed
                     </div>
                   </div>
+
+                  <div className="mt-6">
+                    <button
+                      onClick={() => {
+                        sendMessageToInvestor(selectedInvestor);
+                        closeModal();
+                      }}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                    >
+                      <MessageSquare className="w-5 h-5" />
+                      Send Message
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
@@ -669,9 +875,11 @@ export default function MatchMaking() {
             {selectedFounder && (
               <div className="p-6">
                 <div className="flex items-start gap-6 mb-6">
-                  <img
+                  <Image
                     src={selectedFounder.avatar}
                     alt={selectedFounder.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full"
                   />
                   <div className="flex-1">
@@ -733,6 +941,19 @@ export default function MatchMaking() {
                   <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4">
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Team</h4>
                     <p className="text-gray-700 dark:text-gray-300">{selectedFounder.team}</p>
+                  </div>
+
+                  <div className="mt-6">
+                    <button
+                      onClick={() => {
+                        sendMessageToFounder(selectedFounder);
+                        closeModal();
+                      }}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                    >
+                      <MessageSquare className="w-5 h-5" />
+                      Send Message
+                    </button>
                   </div>
                 </div>
               </div>

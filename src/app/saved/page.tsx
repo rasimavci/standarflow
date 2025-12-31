@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Heart, Building2, MapPin, DollarSign, TrendingUp, Briefcase, X, Mail, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Investor {
   id: number;
@@ -45,6 +46,34 @@ export default function SavedPage() {
   const [selectedFounder, setSelectedFounder] = useState<Founder | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const loadSavedData = useCallback(async () => {
+    if (!user) return;
+
+    if (user.role === 'founder') {
+      // Load saved investors for founders
+      const foundersRes = await fetch('/api/founders');
+      const foundersData = await foundersRes.json();
+      const founder = foundersData.find((f: any) => f.email === user.email);
+      const favoriteIds = founder?.favorites || [];
+
+      const investorsRes = await fetch('/api/investors');
+      const investorsData = await investorsRes.json();
+      const favorites = investorsData.filter((inv: Investor) => favoriteIds.includes(inv.id));
+      setSavedInvestors(favorites);
+    } else if (user.role === 'investor') {
+      // Load saved founders for investors
+      const investorsRes = await fetch('/api/investors');
+      const investorsData = await investorsRes.json();
+      const investor = investorsData.find((inv: any) => inv.email === user.email);
+      const favoriteIds = investor?.favorites || [];
+
+      const foundersRes = await fetch('/api/founders');
+      const foundersData = await foundersRes.json();
+      const favorites = foundersData.filter((founder: Founder) => favoriteIds.includes(founder.id));
+      setSavedFounders(favorites);
+    }
+  }, [user]);
+
   useEffect(() => {
     if (!isAuthenticated) {
       router.push('/signin');
@@ -52,49 +81,35 @@ export default function SavedPage() {
     }
 
     loadSavedData();
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, router, loadSavedData]);
 
-  const loadSavedData = () => {
-    if (!user) return;
-
-    if (user.role === 'founder') {
-      // Load saved investors for founders
-      const foundersData = JSON.parse(localStorage.getItem('founders') || '[]');
-      const founder = foundersData.find((f: any) => f.email === user.email);
-      const favoriteIds = founder?.favorites || [];
-
-      const investorsData = JSON.parse(localStorage.getItem('investors') || '[]');
-      const favorites = investorsData.filter((inv: Investor) => favoriteIds.includes(inv.id));
-      setSavedInvestors(favorites);
-    } else if (user.role === 'investor') {
-      // Load saved founders for investors
-      const investorsData = JSON.parse(localStorage.getItem('investors') || '[]');
-      const investor = investorsData.find((inv: any) => inv.email === user.email);
-      const favoriteIds = investor?.favorites || [];
-
-      const foundersData = JSON.parse(localStorage.getItem('founders') || '[]');
-      const favorites = foundersData.filter((founder: Founder) => favoriteIds.includes(founder.id));
-      setSavedFounders(favorites);
-    }
-  };
-
-  const removeFavorite = (id: number, type: 'investor' | 'founder') => {
+  const removeFavorite = async (id: number, type: 'investor' | 'founder') => {
     if (!user) return;
 
     if (type === 'investor') {
-      const foundersData = JSON.parse(localStorage.getItem('founders') || '[]');
+      const foundersRes = await fetch('/api/founders');
+      const foundersData = await foundersRes.json();
       const founderIndex = foundersData.findIndex((f: any) => f.email === user.email);
       if (founderIndex !== -1) {
         foundersData[founderIndex].favorites = foundersData[founderIndex].favorites.filter((fid: number) => fid !== id);
-        localStorage.setItem('founders', JSON.stringify(foundersData));
+        await fetch('/api/founders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ founders: foundersData }),
+        });
         loadSavedData();
       }
     } else {
-      const investorsData = JSON.parse(localStorage.getItem('investors') || '[]');
+      const investorsRes = await fetch('/api/investors');
+      const investorsData = await investorsRes.json();
       const investorIndex = investorsData.findIndex((inv: any) => inv.email === user.email);
       if (investorIndex !== -1) {
         investorsData[investorIndex].favorites = investorsData[investorIndex].favorites.filter((fid: number) => fid !== id);
-        localStorage.setItem('investors', JSON.stringify(investorsData));
+        await fetch('/api/investors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ investors: investorsData }),
+        });
         loadSavedData();
       }
     }
@@ -155,7 +170,7 @@ export default function SavedPage() {
                   No saved investors yet
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  Browse the Match Making page to save investors you're interested in
+                  Browse the Match Making page to save investors you&apos;re interested in
                 </p>
                 <Link
                   href="/matchmaking"
@@ -172,9 +187,11 @@ export default function SavedPage() {
                     className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 border border-gray-200 dark:border-gray-700"
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <img
+                      <Image
                         src={investor.avatar}
                         alt={investor.name}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-full"
                       />
                       <div className="flex-1">
@@ -243,7 +260,7 @@ export default function SavedPage() {
                   No saved startups yet
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  Browse the Match Making page to save startups you're interested in
+                  Browse the Match Making page to save startups you&apos;re interested in
                 </p>
                 <Link
                   href="/matchmaking"
@@ -260,9 +277,11 @@ export default function SavedPage() {
                     className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all p-6 border border-gray-200 dark:border-gray-700"
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <img
+                      <Image
                         src={founder.avatar}
                         alt={founder.name}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-full"
                       />
                       <div className="flex-1">
@@ -343,9 +362,11 @@ export default function SavedPage() {
             {selectedInvestor && (
               <div className="p-6">
                 <div className="flex items-start gap-6 mb-6">
-                  <img
+                  <Image
                     src={selectedInvestor.avatar}
                     alt={selectedInvestor.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full"
                   />
                   <div className="flex-1">
@@ -438,9 +459,11 @@ export default function SavedPage() {
             {selectedFounder && (
               <div className="p-6">
                 <div className="flex items-start gap-6 mb-6">
-                  <img
+                  <Image
                     src={selectedFounder.avatar}
                     alt={selectedFounder.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full"
                   />
                   <div className="flex-1">

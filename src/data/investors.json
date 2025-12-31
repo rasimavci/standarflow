@@ -5,12 +5,23 @@
     "email": "sarah.chen@sequoia.com",
     "firm": "Sequoia Capital",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-    "industries": ["AI/ML", "SaaS", "FinTech"],
-    "stages": ["Series A", "Series B"],
+    "industries": [
+      "AI/ML",
+      "SaaS",
+      "FinTech"
+    ],
+    "stages": [
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$5M-$20M",
     "location": "San Francisco, CA",
     "bio": "Former Google PM. Passionate about AI-driven enterprise solutions.",
-    "portfolio": ["OpenAI", "Stripe", "Notion"],
+    "portfolio": [
+      "OpenAI",
+      "Stripe",
+      "Notion"
+    ],
     "dealsCompleted": 34,
     "favorites": [],
     "createdAt": "2024-01-20T08:00:00.000Z",
@@ -22,14 +33,36 @@
     "email": "michael.rodriguez@a16z.com",
     "firm": "Andreessen Horowitz",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
-    "industries": ["HealthTech", "BioTech", "AI/ML"],
-    "stages": ["Seed", "Series A"],
+    "industries": [
+      "HealthTech",
+      "BioTech",
+      "AI/ML"
+    ],
+    "stages": [
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$2M-$10M",
     "location": "Menlo Park, CA",
     "bio": "Former physician turned investor. Focus on healthcare innovation.",
-    "portfolio": ["Oscar Health", "Tempus", "Devoted Health"],
+    "portfolio": [
+      "Oscar Health",
+      "Tempus",
+      "Devoted Health"
+    ],
     "dealsCompleted": 28,
-    "favorites": [],
+    "favorites": [
+      5,
+      2,
+      6,
+      1,
+      4,
+      8,
+      7,
+      3,
+      18,
+      9
+    ],
     "createdAt": "2024-01-25T10:30:00.000Z",
     "status": "active"
   },
@@ -39,12 +72,24 @@
     "email": "emily.watson@accel.com",
     "firm": "Accel Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
-    "industries": ["E-commerce", "SaaS", "Consumer Tech"],
-    "stages": ["Seed", "Series A", "Series B"],
+    "industries": [
+      "E-commerce",
+      "SaaS",
+      "Consumer Tech"
+    ],
+    "stages": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$1M-$15M",
     "location": "Palo Alto, CA",
     "bio": "E-commerce expert with 15+ years experience. Led Shopify's growth.",
-    "portfolio": ["Shopify", "Faire", "Poshmark"],
+    "portfolio": [
+      "Shopify",
+      "Faire",
+      "Poshmark"
+    ],
     "dealsCompleted": 42,
     "favorites": [],
     "createdAt": "2024-02-08T13:15:00.000Z",
@@ -56,12 +101,24 @@
     "email": "james.park@kpcb.com",
     "firm": "Kleiner Perkins",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James",
-    "industries": ["CleanTech", "Energy", "Sustainability"],
-    "stages": ["Series A", "Series B", "Series C"],
+    "industries": [
+      "CleanTech",
+      "Energy",
+      "Sustainability"
+    ],
+    "stages": [
+      "Series A",
+      "Series B",
+      "Series C"
+    ],
     "investmentRange": "$10M-$50M",
     "location": "San Francisco, CA",
     "bio": "Climate tech enthusiast. Building a sustainable future.",
-    "portfolio": ["Rivian", "Northvolt", "Commonwealth Fusion"],
+    "portfolio": [
+      "Rivian",
+      "Northvolt",
+      "Commonwealth Fusion"
+    ],
     "dealsCompleted": 19,
     "favorites": [],
     "createdAt": "2024-02-18T15:45:00.000Z",
@@ -73,12 +130,23 @@
     "email": "lisa.kumar@benchmark.com",
     "firm": "Benchmark Capital",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
-    "industries": ["FinTech", "Blockchain", "Web3"],
-    "stages": ["Seed", "Series A"],
+    "industries": [
+      "FinTech",
+      "Blockchain",
+      "Web3"
+    ],
+    "stages": [
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$3M-$12M",
     "location": "New York, NY",
     "bio": "Blockchain pioneer. Former Goldman Sachs managing director.",
-    "portfolio": ["Coinbase", "Plaid", "Chime"],
+    "portfolio": [
+      "Coinbase",
+      "Plaid",
+      "Chime"
+    ],
     "dealsCompleted": 31,
     "favorites": [],
     "createdAt": "2024-03-10T09:20:00.000Z",
@@ -90,12 +158,23 @@
     "email": "david.thompson@greylock.com",
     "firm": "Greylock Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-    "industries": ["EdTech", "AI/ML", "SaaS"],
-    "stages": ["Seed", "Series A"],
+    "industries": [
+      "EdTech",
+      "AI/ML",
+      "SaaS"
+    ],
+    "stages": [
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$2M-$8M",
     "location": "Boston, MA",
     "bio": "Education reformer. MIT graduate focused on learning tech.",
-    "portfolio": ["Coursera", "Duolingo", "Udemy"],
+    "portfolio": [
+      "Coursera",
+      "Duolingo",
+      "Udemy"
+    ],
     "dealsCompleted": 25,
     "favorites": [],
     "createdAt": "2024-03-25T11:00:00.000Z",
@@ -107,12 +186,23 @@
     "email": "rachel.martinez@lightspeed.com",
     "firm": "Lightspeed Venture",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Rachel",
-    "industries": ["AI/ML", "Robotics", "Hardware"],
-    "stages": ["Series A", "Series B"],
+    "industries": [
+      "AI/ML",
+      "Robotics",
+      "Hardware"
+    ],
+    "stages": [
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$8M-$25M",
     "location": "Austin, TX",
     "bio": "Robotics engineer turned VC. Building the future of automation.",
-    "portfolio": ["Boston Dynamics", "Waymo", "Cruise"],
+    "portfolio": [
+      "Boston Dynamics",
+      "Waymo",
+      "Cruise"
+    ],
     "dealsCompleted": 22,
     "favorites": [],
     "createdAt": "2024-04-15T14:30:00.000Z",
@@ -124,12 +214,24 @@
     "email": "alex.johnson@indexventures.com",
     "firm": "Index Ventures",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-    "industries": ["SaaS", "Developer Tools", "Infrastructure"],
-    "stages": ["Seed", "Series A", "Series B"],
+    "industries": [
+      "SaaS",
+      "Developer Tools",
+      "Infrastructure"
+    ],
+    "stages": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$4M-$18M",
     "location": "Seattle, WA",
     "bio": "Former AWS architect. Passionate about dev tools and infrastructure.",
-    "portfolio": ["Figma", "GitLab", "Datadog"],
+    "portfolio": [
+      "Figma",
+      "GitLab",
+      "Datadog"
+    ],
     "dealsCompleted": 37,
     "favorites": [],
     "createdAt": "2024-05-20T16:00:00.000Z",
@@ -141,12 +243,24 @@
     "email": "nina.patel@nea.com",
     "firm": "New Enterprise Associates",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Nina",
-    "industries": ["Consumer Tech", "E-commerce", "Marketplace"],
-    "stages": ["Series A", "Series B", "Series C"],
+    "industries": [
+      "Consumer Tech",
+      "E-commerce",
+      "Marketplace"
+    ],
+    "stages": [
+      "Series A",
+      "Series B",
+      "Series C"
+    ],
     "investmentRange": "$10M-$30M",
     "location": "San Francisco, CA",
     "bio": "Consumer tech expert with proven track record in marketplace businesses.",
-    "portfolio": ["Uber", "Airbnb", "DoorDash"],
+    "portfolio": [
+      "Uber",
+      "Airbnb",
+      "DoorDash"
+    ],
     "dealsCompleted": 45,
     "favorites": [],
     "createdAt": "2024-06-05T10:15:00.000Z",
@@ -158,12 +272,23 @@
     "email": "robert.chang@gv.com",
     "firm": "GV (Google Ventures)",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
-    "industries": ["AI/ML", "Enterprise", "Data"],
-    "stages": ["Seed", "Series A"],
+    "industries": [
+      "AI/ML",
+      "Enterprise",
+      "Data"
+    ],
+    "stages": [
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$3M-$15M",
     "location": "Mountain View, CA",
     "bio": "AI and data infrastructure specialist. Ex-Google Brain researcher.",
-    "portfolio": ["DeepMind", "Anthropic", "Databricks"],
+    "portfolio": [
+      "DeepMind",
+      "Anthropic",
+      "Databricks"
+    ],
     "dealsCompleted": 29,
     "favorites": [],
     "createdAt": "2024-06-20T13:40:00.000Z",
@@ -175,12 +300,23 @@
     "email": "amanda.foster@nfx.com",
     "firm": "NFX",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Amanda",
-    "industries": ["Social", "Marketplace", "Network Effects"],
-    "stages": ["Pre-Seed", "Seed"],
+    "industries": [
+      "Social",
+      "Marketplace",
+      "Network Effects"
+    ],
+    "stages": [
+      "Pre-Seed",
+      "Seed"
+    ],
     "investmentRange": "$500K-$5M",
     "location": "San Francisco, CA",
     "bio": "Network effects pioneer. Founder of 3 successful startups.",
-    "portfolio": ["Discord", "Lyft", "Nextdoor"],
+    "portfolio": [
+      "Discord",
+      "Lyft",
+      "Nextdoor"
+    ],
     "dealsCompleted": 52,
     "favorites": [],
     "createdAt": "2024-07-10T11:20:00.000Z",
@@ -192,12 +328,24 @@
     "email": "thomas.wright@khoslaventures.com",
     "firm": "Khosla Ventures",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas",
-    "industries": ["CleanTech", "Climate", "Energy"],
-    "stages": ["Seed", "Series A", "Series B"],
+    "industries": [
+      "CleanTech",
+      "Climate",
+      "Energy"
+    ],
+    "stages": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$5M-$25M",
     "location": "Menlo Park, CA",
     "bio": "Climate tech investor focused on decarbonization and sustainability.",
-    "portfolio": ["Impossible Foods", "QuantumScape", "Helion"],
+    "portfolio": [
+      "Impossible Foods",
+      "QuantumScape",
+      "Helion"
+    ],
     "dealsCompleted": 33,
     "favorites": [],
     "createdAt": "2024-07-28T09:50:00.000Z",
@@ -209,12 +357,24 @@
     "email": "sophia.lee@insight.com",
     "firm": "Insight Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia",
-    "industries": ["SaaS", "Enterprise", "B2B"],
-    "stages": ["Series B", "Series C", "Growth"],
+    "industries": [
+      "SaaS",
+      "Enterprise",
+      "B2B"
+    ],
+    "stages": [
+      "Series B",
+      "Series C",
+      "Growth"
+    ],
     "investmentRange": "$20M-$100M",
     "location": "New York, NY",
     "bio": "Growth stage SaaS specialist. Scaled 10+ unicorns.",
-    "portfolio": ["Shopify", "Twitter", "Docker"],
+    "portfolio": [
+      "Shopify",
+      "Twitter",
+      "Docker"
+    ],
     "dealsCompleted": 38,
     "favorites": [],
     "createdAt": "2024-08-15T15:10:00.000Z",
@@ -226,12 +386,23 @@
     "email": "marcus.williams@bessemer.com",
     "firm": "Bessemer Venture Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
-    "industries": ["Cloud", "Infrastructure", "DevOps"],
-    "stages": ["Series A", "Series B"],
+    "industries": [
+      "Cloud",
+      "Infrastructure",
+      "DevOps"
+    ],
+    "stages": [
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$7M-$20M",
     "location": "San Francisco, CA",
     "bio": "Cloud infrastructure expert. First investor in several cloud giants.",
-    "portfolio": ["LinkedIn", "Twilio", "HashiCorp"],
+    "portfolio": [
+      "LinkedIn",
+      "Twilio",
+      "HashiCorp"
+    ],
     "dealsCompleted": 41,
     "favorites": [],
     "createdAt": "2024-09-02T12:25:00.000Z",
@@ -243,12 +414,23 @@
     "email": "jennifer.zhang@matrix.com",
     "firm": "Matrix Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jennifer",
-    "industries": ["Consumer", "Mobile", "Gaming"],
-    "stages": ["Seed", "Series A"],
+    "industries": [
+      "Consumer",
+      "Mobile",
+      "Gaming"
+    ],
+    "stages": [
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$2M-$10M",
     "location": "San Francisco, CA",
     "bio": "Mobile and consumer apps specialist. Gaming industry veteran.",
-    "portfolio": ["Roblox", "Epic Games", "Unity"],
+    "portfolio": [
+      "Roblox",
+      "Epic Games",
+      "Unity"
+    ],
     "dealsCompleted": 36,
     "favorites": [],
     "createdAt": "2024-09-18T10:40:00.000Z",
@@ -260,12 +442,24 @@
     "email": "daniel.cohen@spark.com",
     "firm": "Spark Capital",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Daniel",
-    "industries": ["FinTech", "Crypto", "Payments"],
-    "stages": ["Seed", "Series A", "Series B"],
+    "industries": [
+      "FinTech",
+      "Crypto",
+      "Payments"
+    ],
+    "stages": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$3M-$15M",
     "location": "Boston, MA",
     "bio": "FinTech innovator. Early believer in cryptocurrency revolution.",
-    "portfolio": ["Coinbase", "Robinhood", "Affirm"],
+    "portfolio": [
+      "Coinbase",
+      "Robinhood",
+      "Affirm"
+    ],
     "dealsCompleted": 27,
     "favorites": [],
     "createdAt": "2024-10-05T14:15:00.000Z",
@@ -277,12 +471,24 @@
     "email": "victoria.santos@forerunner.com",
     "firm": "Forerunner Ventures",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Victoria",
-    "industries": ["E-commerce", "DTC", "Consumer"],
-    "stages": ["Pre-Seed", "Seed", "Series A"],
+    "industries": [
+      "E-commerce",
+      "DTC",
+      "Consumer"
+    ],
+    "stages": [
+      "Pre-Seed",
+      "Seed",
+      "Series A"
+    ],
     "investmentRange": "$1M-$8M",
     "location": "San Francisco, CA",
     "bio": "Direct-to-consumer expert. Helped build 20+ DTC brands.",
-    "portfolio": ["Warby Parker", "Glossier", "Bonobos"],
+    "portfolio": [
+      "Warby Parker",
+      "Glossier",
+      "Bonobos"
+    ],
     "dealsCompleted": 48,
     "favorites": [],
     "createdAt": "2024-10-22T11:30:00.000Z",
@@ -294,12 +500,23 @@
     "email": "kevin.anderson@foundry.com",
     "firm": "Foundry Group",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=KevinA",
-    "industries": ["SaaS", "Marketplace", "Platform"],
-    "stages": ["Series A", "Series B"],
+    "industries": [
+      "SaaS",
+      "Marketplace",
+      "Platform"
+    ],
+    "stages": [
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$5M-$20M",
     "location": "Boulder, CO",
     "bio": "Platform business model expert. Focus on network effects.",
-    "portfolio": ["Zynga", "Fitbit", "SendGrid"],
+    "portfolio": [
+      "Zynga",
+      "Fitbit",
+      "SendGrid"
+    ],
     "dealsCompleted": 35,
     "favorites": [],
     "createdAt": "2024-11-08T09:00:00.000Z",
@@ -311,12 +528,24 @@
     "email": "michelle.tan@canaan.com",
     "firm": "Canaan Partners",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michelle",
-    "industries": ["HealthTech", "BioTech", "MedTech"],
-    "stages": ["Series A", "Series B", "Series C"],
+    "industries": [
+      "HealthTech",
+      "BioTech",
+      "MedTech"
+    ],
+    "stages": [
+      "Series A",
+      "Series B",
+      "Series C"
+    ],
     "investmentRange": "$10M-$40M",
     "location": "Menlo Park, CA",
     "bio": "Healthcare technology pioneer. MD/MBA with deep medical expertise.",
-    "portfolio": ["Moderna", "23andMe", "PillPack"],
+    "portfolio": [
+      "Moderna",
+      "23andMe",
+      "PillPack"
+    ],
     "dealsCompleted": 30,
     "favorites": [],
     "createdAt": "2024-11-25T13:45:00.000Z",
@@ -328,12 +557,24 @@
     "email": "brian.miller@mayfield.com",
     "firm": "Mayfield Fund",
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Brian",
-    "industries": ["AI/ML", "Automation", "Enterprise"],
-    "stages": ["Seed", "Series A", "Series B"],
+    "industries": [
+      "AI/ML",
+      "Automation",
+      "Enterprise"
+    ],
+    "stages": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
     "investmentRange": "$4M-$18M",
     "location": "Menlo Park, CA",
     "bio": "Enterprise AI specialist. Helping companies automate intelligently.",
-    "portfolio": ["UiPath", "Automation Anywhere", "WorkFusion"],
+    "portfolio": [
+      "UiPath",
+      "Automation Anywhere",
+      "WorkFusion"
+    ],
     "dealsCompleted": 32,
     "favorites": [],
     "createdAt": "2024-12-10T10:20:00.000Z",

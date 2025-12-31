@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Mail, MapPin, Building2, Briefcase, TrendingUp, DollarSign, Globe, Edit, Save, X } from "lucide-react";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const { user, isAuthenticated } = useAuth();
@@ -82,9 +83,11 @@ export default function ProfilePage() {
             {/* Profile Info */}
             <div className="px-8 pb-8">
               <div className="flex items-end justify-between -mt-16 mb-4">
-                <img
+                <Image
                   src={user.avatar}
                   alt={user.name}
+                  width={128}
+                  height={128}
                   className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg"
                 />
                 {!isEditing ? (
