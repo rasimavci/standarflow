@@ -2,20 +2,31 @@
 
 import { Users, TrendingUp, Rss, UserCircle } from "lucide-react";
 
-const features = [
+interface Feature {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  color: string;
+  iconColor: string;
+  link?: string;
+}
+
+const features: Feature[] = [
   {
     icon: Users,
     title: "Smart Match Making",
     description: "Our AI-powered algorithm connects founders with investors based on industry, stage, investment size, and strategic fit.",
     color: "bg-blue-100 dark:bg-blue-900",
-    iconColor: "text-blue-600 dark:text-blue-400"
+    iconColor: "text-blue-600 dark:text-blue-400",
+    link: "/matchmaking"
   },
   {
     icon: TrendingUp,
     title: "Investment Trends",
     description: "Stay ahead with real-time insights into trending investment topics, hot sectors, and emerging opportunities.",
     color: "bg-green-100 dark:bg-green-900",
-    iconColor: "text-green-600 dark:text-green-400"
+    iconColor: "text-green-600 dark:text-green-400",
+    link: "/trends"
   },
   {
     icon: Rss,
@@ -47,22 +58,38 @@ export default function Features() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div 
-              key={index}
-              className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1"
-            >
-              <div className={`w-14 h-14 ${feature.color} rounded-xl flex items-center justify-center mb-4`}>
-                <feature.icon className={`w-7 h-7 ${feature.iconColor}`} />
+          {features.map((feature, index) => {
+            const CardContent = (
+              <>
+                <div className={`w-14 h-14 ${feature.color} rounded-xl flex items-center justify-center mb-4`}>
+                  <feature.icon className={`w-7 h-7 ${feature.iconColor}`} />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {feature.description}
+                </p>
+              </>
+            );
+
+            return feature.link ? (
+              <a
+                key={index}
+                href={feature.link}
+                className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1 block"
+              >
+                {CardContent}
+              </a>
+            ) : (
+              <div 
+                key={index}
+                className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1"
+              >
+                {CardContent}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* How It Works */}

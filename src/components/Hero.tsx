@@ -5,23 +5,6 @@ import { TrendingUp, Users, Rss, UserCircle } from "lucide-react";
 export default function Hero() {
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Navigation */}
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">SF</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">standardflow</span>
-          </div>
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">Features</a>
-            <a href="#apply" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">Apply Now</a>
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Sign In</button>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Content */}
       <div className="container mx-auto px-6 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">

@@ -33,8 +33,10 @@ export default function ApplicationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [countries, setCountries] = useState<Country[]>([]);
   const [universities, setUniversities] = useState<University[]>([]);
+  const [universitySearch, setUniversitySearch] = useState("");
   const [loadingUniversities, setLoadingUniversities] = useState(false);
   const [universityError, setUniversityError] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Fetch countries on mount
   useEffect(() => {
@@ -49,39 +51,119 @@ export default function ApplicationForm() {
       .catch(err => console.error('Error fetching countries:', err));
   }, []);
 
-  // Fetch universities when country changes
+  // Fetch universities based on country selection
   useEffect(() => {
-    if (formData.country) {
-      setLoadingUniversities(true);
-      const selectedCountry = countries.find(c => c.cca2 === formData.country);
-      if (selectedCountry) {
-        // Map country name for API compatibility (e.g., Turkey -> Turkiye)
-        let countryName = selectedCountry.name.common;
-        if (countryName === "Turkey") {
-          countryName = "Turkiye";
-        }
-        
-        fetch(`/api/universities?country=${encodeURIComponent(countryName)}`)
-          .then(res => res.json())
+    if (!formData.country) {
+      setUniversities([]);
+      return;
+    }
+
+    const selectedCountry = countries.find(c => c.cca2 === formData.country);
+    if (!selectedCountry) return;
+
+    let countryName = selectedCountry.name.common;
+    if (countryName === "Turkey") {
+      countryName = "Turkiye";
+    }
+
+    const isUnitedStates = countryName === "United States";
+
+    // For United States, only search when user types (min 1 char)
+    if (isUnitedStates) {
+      if (universitySearch.length < 1) {
+        setUniversities([]);
+        return;
+      }
+
+      const timeoutId = setTimeout(() => {
+        setLoadingUniversities(true);
+        fetch(`/api/universities?name=${encodeURIComponent(universitySearch)}&country=${encodeURIComponent(countryName)}`)
+          .then(res => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch universities');
+            }
+            return res.json();
+          })
           .then(data => {
-            setUniversities(data);
+            if (Array.isArray(data)) {
+              setUniversities(data);
+              setUniversityError(false);
+            } else {
+              console.error('Invalid data format from API:', data);
+              setUniversities([]);
+              setUniversityError(true);
+            }
             setLoadingUniversities(false);
-            setUniversityError(false);
           })
           .catch(err => {
             console.error('Error fetching universities:', err);
+            setUniversities([]);
             setLoadingUniversities(false);
             setUniversityError(true);
           });
-      }
+      }, 300); // 300ms debounce
+
+      return () => clearTimeout(timeoutId);
     } else {
-      setUniversities([]);
+      // For other countries, fetch all universities directly
+      setLoadingUniversities(true);
+      fetch(`/api/universities?country=${encodeURIComponent(countryName)}`)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch universities');
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (Array.isArray(data)) {
+            setUniversities(data);
+            setUniversityError(false);
+          } else {
+            console.error('Invalid data format from API:', data);
+            setUniversities([]);
+            setUniversityError(true);
+          }
+          setLoadingUniversities(false);
+        })
+        .catch(err => {
+          console.error('Error fetching universities:', err);
+          setUniversities([]);
+          setLoadingUniversities(false);
+          setUniversityError(true);
+        });
     }
-  }, [formData.country, countries]);
+  }, [universitySearch, formData.country, countries]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would handle the actual form submission
+    
+    // Save to localStorage
+    const founderData = {
+      ...formData,
+      id: Math.random().toString(36).substr(2, 9),
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${formData.email}`,
+      role: "founder",
+      pitchDeck: fileName,
+      createdAt: new Date().toISOString(),
+      status: "active",
+      favorites: []
+    };
+    
+    // Get existing founders from localStorage
+    const existingFounders = JSON.parse(localStorage.getItem("founders") || "[]");
+    
+    // Check if email already exists
+    const existingIndex = existingFounders.findIndex((f: any) => f.email === formData.email);
+    if (existingIndex >= 0) {
+      // Update existing
+      existingFounders[existingIndex] = founderData;
+    } else {
+      // Add new
+      existingFounders.push(founderData);
+    }
+    
+    localStorage.setItem("founders", JSON.stringify(existingFounders));
+    
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -98,6 +180,7 @@ export default function ApplicationForm() {
         description: ""
       });
       setFileName("");
+      setUniversitySearch("");
     }, 3000);
   };
 
@@ -107,6 +190,8 @@ export default function ApplicationForm() {
       country: e.target.value,
       university: "" // Reset university when country changes
     });
+    setUniversitySearch("");
+    setUniversities([]);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,8 +209,8 @@ export default function ApplicationForm() {
               Apply as a Founder
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              Fill out the form below and upload your pitch deck to get started. 
-              We&apos;ll review your application and connect you with potential investors.
+              Fill out the form below to get started. 
+              You can optionally upload your pitch deck to enhance your application.
             </p>
           </div>
 
@@ -217,26 +302,79 @@ export default function ApplicationForm() {
                     ))}
                   </select>
                 </div>
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     University *
                   </label>
-                  <select
-                    required
-                    value={formData.university}
-                    onChange={(e) => setFormData({...formData, university: e.target.value})}
-                    disabled={!formData.country || loadingUniversities}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <option value="">
-                      {loadingUniversities ? 'Loading universities...' : formData.country ? 'Select University' : 'Select country first'}
-                    </option>
-                    {universities.map((uni, index) => (
-                      <option key={index} value={uni.name}>
-                        {uni.name}
-                      </option>
-                    ))}
-                  </select>
+                  {formData.country && countries.find(c => c.cca2 === formData.country)?.name.common === "United States" ? (
+                    // Autocomplete input for United States
+                    <>
+                      <input
+                        type="text"
+                        required
+                        value={universitySearch}
+                        onChange={(e) => {
+                          setUniversitySearch(e.target.value);
+                          setShowSuggestions(true);
+                        }}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                        onFocus={() => universitySearch && setShowSuggestions(true)}
+                        placeholder="Type to search universities..."
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                      {showSuggestions && universities.length > 0 && (
+                        <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                          {universities.map((uni, index) => (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => {
+                                setFormData({...formData, university: uni.name});
+                                setUniversitySearch(uni.name);
+                                setShowSuggestions(false);
+                              }}
+                              className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
+                            >
+                              {uni.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      {loadingUniversities && universitySearch.length >= 1 && (
+                        <p className="text-sm text-gray-500 mt-1">Searching...</p>
+                      )}
+                      {universityError && (
+                        <p className="text-sm text-red-500 mt-1">
+                          Unable to load universities. Please try again.
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    // Regular dropdown for other countries
+                    <>
+                      <select
+                        required
+                        value={formData.university}
+                        onChange={(e) => setFormData({...formData, university: e.target.value})}
+                        disabled={!formData.country || loadingUniversities}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <option value="">
+                          {loadingUniversities ? 'Loading universities...' : formData.country ? 'Select University' : 'Select country first'}
+                        </option>
+                        {universities.map((uni, index) => (
+                          <option key={index} value={uni.name}>
+                            {uni.name}
+                          </option>
+                        ))}
+                      </select>
+                      {universityError && (
+                        <p className="text-sm text-red-500 mt-1">
+                          Unable to load universities. Please try again.
+                        </p>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -312,12 +450,11 @@ export default function ApplicationForm() {
 
               <div className="mb-8">
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Pitch Deck * (PDF, Max 10MB)
+                  Pitch Deck (Optional - PDF, Max 10MB)
                 </label>
                 <div className="relative">
                   <input
                     type="file"
-                    required
                     onChange={handleFileChange}
                     accept=".pdf,.ppt,.pptx"
                     className="hidden"
