@@ -9,6 +9,12 @@ interface User {
   email: string;
   avatar: string;
   role: "founder" | "investor" | "admin";
+  // Investor-specific fields
+  firm?: string;
+  investmentRange?: string;
+  // Founder-specific fields
+  company?: string;
+  stage?: string;
 }
 
 interface AuthContextType {
@@ -63,7 +69,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         name: founder.founderName,
         email: founder.email,
         avatar: founder.avatar,
-        role: "founder"
+        role: "founder",
+        company: founder.company,
+        stage: founder.stage
       };
       setUser(mockUser);
       localStorage.setItem("user", JSON.stringify(mockUser));
@@ -80,7 +88,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         name: investor.name,
         email: investor.email,
         avatar: investor.avatar,
-        role: "investor"
+        role: "investor",
+        firm: investor.firm,
+        investmentRange: investor.investmentRange
       };
       setUser(mockUser);
       localStorage.setItem("user", JSON.stringify(mockUser));

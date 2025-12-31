@@ -24,6 +24,7 @@ export default function ProfilePage() {
     }
 
     loadProfileData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isAuthenticated, router]);
 
   const loadProfileData = async () => {
@@ -57,6 +58,7 @@ export default function ProfilePage() {
         })
         .catch(err => console.error('Error loading countries:', err));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEditing]);
 
   // Load universities when country changes
