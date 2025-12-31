@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { TrendingUp, DollarSign, Users, BarChart3, Zap, Activity, Globe, Smartphone } from "lucide-react";
 
 interface TrendCategory {
   name: string;
-  icon: JSX.Element;
+  icon: React.ReactElement;
   growth: string;
   funding: string;
   deals: number;
