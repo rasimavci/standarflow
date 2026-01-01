@@ -543,7 +543,7 @@ export default function FundraisingPage() {
             {/* Modal Content */}
             <div className="flex-1 overflow-y-auto p-6">
               <div className="space-y-6">
-                {selectedCategory === 'crowdfunding' && 'companyName' in selectedItem && (
+                {selectedCategory === 'crowdfunding' && 'companyName' in selectedItem && 'offeringAmount' in selectedItem && (
                   <>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Funding Details</h3>
