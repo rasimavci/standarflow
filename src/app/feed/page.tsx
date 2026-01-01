@@ -98,7 +98,7 @@ export default function FeedPage() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [articleContent, setArticleContent] = useState<string>('');
   const [loadingArticle, setLoadingArticle] = useState(false);
-  const observer = useRef<IntersectionObserver>();
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const API_KEY = "0MnwxO7b6STq6VUUvxvOfnTTEQ4YZ4ID";
   const LIMIT = 20;
