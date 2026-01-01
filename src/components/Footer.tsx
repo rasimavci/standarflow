@@ -29,19 +29,19 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-white transition">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Help Center</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Investment Trends</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Guidelines</a></li>
+              <li><a href="help" className="text-gray-400 hover:text-white transition">Help Center</a></li>
+              <li><a href="investment-trends" className="text-gray-400 hover:text-white transition">Investment Trends</a></li>
+              <li><a href="guidelines" className="text-gray-400 hover:text-white transition">Guidelines</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+              <li><a href="about" className="text-gray-400 hover:text-white transition">About Us</a></li>
+              <li><a href="contact" className="text-gray-400 hover:text-white transition">Contact</a></li>
+              <li><a href="privacy" className="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="terms" className="text-gray-400 hover:text-white transition">Terms of Service</a></li>
             </ul>
           </div>
         </div>

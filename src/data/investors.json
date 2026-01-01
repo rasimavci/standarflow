@@ -4,6 +4,16 @@
     "name": "Sarah Chen",
     "email": "sarah.chen@sequoia.com",
     "firm": "Sequoia Capital",
+    "type": "VC",
+    "ticket_size": "$5M–$20M",
+    "countries": ["United States", "Canada"],
+    "contacts": [
+      {
+        "name": "Sarah Chen",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/sarahchen"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
     "industries": [
       "AI/ML",
@@ -32,6 +42,16 @@
     "name": "Michael Rodriguez",
     "email": "michael.rodriguez@a16z.com",
     "firm": "Andreessen Horowitz",
+    "type": "VC",
+    "ticket_size": "$2M–$10M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Michael Rodriguez",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/michaelrodriguez"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
     "industries": [
       "HealthTech",
@@ -71,6 +91,16 @@
     "name": "Emily Watson",
     "email": "emily.watson@accel.com",
     "firm": "Accel Partners",
+    "type": "VC",
+    "ticket_size": "$1M–$15M",
+    "countries": ["United States", "United Kingdom"],
+    "contacts": [
+      {
+        "name": "Emily Watson",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/emilywatson"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
     "industries": [
       "E-commerce",
@@ -100,6 +130,16 @@
     "name": "James Park",
     "email": "james.park@kpcb.com",
     "firm": "Kleiner Perkins",
+    "type": "VC",
+    "ticket_size": "$10M–$50M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "James Park",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/jamespark"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James",
     "industries": [
       "CleanTech",
@@ -129,6 +169,16 @@
     "name": "Lisa Kumar",
     "email": "lisa.kumar@benchmark.com",
     "firm": "Benchmark Capital",
+    "type": "VC",
+    "ticket_size": "$3M–$12M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Lisa Kumar",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/lisakumar"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
     "industries": [
       "FinTech",
@@ -157,6 +207,16 @@
     "name": "David Thompson",
     "email": "david.thompson@greylock.com",
     "firm": "Greylock Partners",
+    "type": "VC",
+    "ticket_size": "$2M–$8M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "David Thompson",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/davidthompson"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
     "industries": [
       "EdTech",
@@ -185,6 +245,16 @@
     "name": "Rachel Martinez",
     "email": "rachel.martinez@lightspeed.com",
     "firm": "Lightspeed Venture",
+    "type": "VC",
+    "ticket_size": "$8M–$25M",
+    "countries": ["United States", "Canada"],
+    "contacts": [
+      {
+        "name": "Rachel Martinez",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/rachelmartinez"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Rachel",
     "industries": [
       "AI/ML",
@@ -213,6 +283,16 @@
     "name": "Alex Johnson",
     "email": "alex.johnson@indexventures.com",
     "firm": "Index Ventures",
+    "type": "VC",
+    "ticket_size": "$4M–$18M",
+    "countries": ["United States", "United Kingdom"],
+    "contacts": [
+      {
+        "name": "Alex Johnson",
+        "title": "Venture Partner",
+        "linkedin_url": "https://www.linkedin.com/in/alexjohnson"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
     "industries": [
       "SaaS",
@@ -242,6 +322,16 @@
     "name": "Nina Patel",
     "email": "nina.patel@nea.com",
     "firm": "New Enterprise Associates",
+    "type": "VC",
+    "ticket_size": "$10M–$30M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Nina Patel",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/ninapatel"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Nina",
     "industries": [
       "Consumer Tech",
@@ -271,6 +361,16 @@
     "name": "Robert Chang",
     "email": "robert.chang@gv.com",
     "firm": "GV (Google Ventures)",
+    "type": "Corporate VC",
+    "ticket_size": "$3M–$15M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Robert Chang",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/robertchang"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
     "industries": [
       "AI/ML",
@@ -299,6 +399,16 @@
     "name": "Amanda Foster",
     "email": "amanda.foster@nfx.com",
     "firm": "NFX",
+    "type": "VC",
+    "ticket_size": "$500K–$5M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Amanda Foster",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/amandafoster"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Amanda",
     "industries": [
       "Social",
@@ -327,6 +437,16 @@
     "name": "Thomas Wright",
     "email": "thomas.wright@khoslaventures.com",
     "firm": "Khosla Ventures",
+    "type": "VC",
+    "ticket_size": "$5M–$25M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Thomas Wright",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/thomaswright"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas",
     "industries": [
       "CleanTech",
@@ -356,6 +476,16 @@
     "name": "Sophia Lee",
     "email": "sophia.lee@insight.com",
     "firm": "Insight Partners",
+    "type": "Growth Equity",
+    "ticket_size": "$20M–$100M",
+    "countries": ["United States", "Europe"],
+    "contacts": [
+      {
+        "name": "Sophia Lee",
+        "title": "Managing Director",
+        "linkedin_url": "https://www.linkedin.com/in/sophialee"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia",
     "industries": [
       "SaaS",
@@ -385,6 +515,16 @@
     "name": "Marcus Williams",
     "email": "marcus.williams@bessemer.com",
     "firm": "Bessemer Venture Partners",
+    "type": "VC",
+    "ticket_size": "$7M–$20M",
+    "countries": ["United States", "Israel"],
+    "contacts": [
+      {
+        "name": "Marcus Williams",
+        "title": "Partner",
+        "linkedin_url": "https://www.linkedin.com/in/marcuswilliams"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
     "industries": [
       "Cloud",
@@ -413,6 +553,16 @@
     "name": "Jennifer Zhang",
     "email": "jennifer.zhang@matrix.com",
     "firm": "Matrix Partners",
+    "type": "VC",
+    "ticket_size": "$2M–$10M",
+    "countries": ["United States", "China"],
+    "contacts": [
+      {
+        "name": "Jennifer Zhang",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/jenniferzhang"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jennifer",
     "industries": [
       "Consumer",
@@ -441,6 +591,16 @@
     "name": "Daniel Cohen",
     "email": "daniel.cohen@spark.com",
     "firm": "Spark Capital",
+    "type": "VC",
+    "ticket_size": "$3M–$15M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Daniel Cohen",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/danielcohen"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Daniel",
     "industries": [
       "FinTech",
@@ -470,6 +630,16 @@
     "name": "Victoria Santos",
     "email": "victoria.santos@forerunner.com",
     "firm": "Forerunner Ventures",
+    "type": "VC",
+    "ticket_size": "$1M–$8M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Victoria Santos",
+        "title": "Founding Partner",
+        "linkedin_url": "https://www.linkedin.com/in/victoriasantos"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Victoria",
     "industries": [
       "E-commerce",
@@ -499,6 +669,16 @@
     "name": "Kevin Anderson",
     "email": "kevin.anderson@foundry.com",
     "firm": "Foundry Group",
+    "type": "VC",
+    "ticket_size": "$5M–$20M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Kevin Anderson",
+        "title": "Managing Director",
+        "linkedin_url": "https://www.linkedin.com/in/kevinanderson"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=KevinA",
     "industries": [
       "SaaS",
@@ -527,6 +707,16 @@
     "name": "Michelle Tan",
     "email": "michelle.tan@canaan.com",
     "firm": "Canaan Partners",
+    "type": "VC",
+    "ticket_size": "$10M–$40M",
+    "countries": ["United States"],
+    "contacts": [
+      {
+        "name": "Michelle Tan",
+        "title": "General Partner",
+        "linkedin_url": "https://www.linkedin.com/in/michelletran"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michelle",
     "industries": [
       "HealthTech",
@@ -556,6 +746,16 @@
     "name": "Brian Miller",
     "email": "brian.miller@mayfield.com",
     "firm": "Mayfield Fund",
+    "type": "VC",
+    "ticket_size": "$4M–$18M",
+    "countries": ["United States", "India"],
+    "contacts": [
+      {
+        "name": "Brian Miller",
+        "title": "Managing Partner",
+        "linkedin_url": "https://www.linkedin.com/in/brianmiller"
+      }
+    ],
     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Brian",
     "industries": [
       "AI/ML",

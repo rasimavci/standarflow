@@ -876,42 +876,63 @@ export default function MatchMaking() {
                     <p className="text-gray-600 dark:text-gray-400">{selectedInvestor.bio}</p>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                  {/* Countries */}
+                  {(selectedInvestor as any).countries && (
+                    <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <Briefcase className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Industries</h4>
+                        <MapPin className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Countries</h4>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {selectedInvestor.industries.map((industry, i) => (
+                        {(selectedInvestor as any).countries.map((country: string, i: number) => (
                           <span
                             key={i}
-                            className="px-3 py-1 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+                            className="px-3 py-1 bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 rounded-full text-sm"
                           >
-                            {industry}
+                            {country}
                           </span>
                         ))}
                       </div>
                     </div>
+                  )}
 
-                    <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Investment Stages</h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedInvestor.stages.map((stage, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 rounded-full text-sm"
-                          >
-                            {stage}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Industries */}
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Briefcase className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      <h4 className="font-semibold text-gray-900 dark:text-white">Industries</h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedInvestor.industries.map((industry, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+                        >
+                          {industry}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
+                  {/* Investment Stages */}
+                  <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />
+                      <h4 className="font-semibold text-gray-900 dark:text-white">Investment Stages</h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedInvestor.stages.map((stage, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 rounded-full text-sm"
+                        >
+                          {stage}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Investment Range */}
                   <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <DollarSign className="w-5 h-5 text-purple-600 dark:text-purple-400" />
