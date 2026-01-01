@@ -224,41 +224,43 @@ export default function FundraisingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center mb-6">
-              <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400" />
+            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full mb-6">
+              <DollarSign className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                Investment Opportunities
+              </span>
             </div>
-            <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Fundraising Opportunities
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Discover crowdfunding campaigns and equity offerings. Track funding activities and explore investment opportunities.
             </p>
           </div>
 
           {/* Category Selector */}
-          <div className="mb-8 flex justify-center">
-            <div className="inline-flex gap-4 p-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-              {CATEGORIES.map((category) => {
-                const Icon = category.icon;
-                const isSelected = selectedCategory === category.id;
-                
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all ${
-                      isSelected
-                        ? category.color === 'blue'
-                          ? 'bg-blue-600 text-white shadow-lg'
-                          : 'bg-purple-600 text-white shadow-lg'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    <Icon className="w-6 h-6" />
-                    <span className="text-lg">{category.name}</span>
-                  </button>
-                );
-              })}
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button
+                onClick={() => setSelectedCategory('crowdfunding')}
+                className={`px-8 py-3 rounded-lg font-semibold transition-all ${
+                  selectedCategory === 'crowdfunding'
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Crowdfunding Campaigns
+              </button>
+              <button
+                onClick={() => setSelectedCategory('equity')}
+                className={`px-8 py-3 rounded-lg font-semibold transition-all ${
+                  selectedCategory === 'equity'
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Equity Offerings
+              </button>
             </div>
           </div>
 
