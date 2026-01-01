@@ -59,6 +59,9 @@ export default function Navbar() {
             <Link href="/trends" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
               Trends
             </Link>
+            <Link href="/feed" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+              Feed
+            </Link>
             {isAuthenticated && (
               <Link href="/saved" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
                 Saved
@@ -253,6 +256,13 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Trends
+              </Link>
+              <Link
+                href="/feed"
+                className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Feed
               </Link>
               {isAuthenticated && (
                 <Link
