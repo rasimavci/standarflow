@@ -16,8 +16,8 @@ export default function TermsOfServicePage() {
                 1. Agreement to Terms
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                By accessing or using StandardFlow ("the Platform"), you agree to be bound by these Terms 
-                of Service ("Terms"). If you disagree with any part of these terms, you may not access 
+                By accessing or using StandardFlow (&quot;the Platform&quot;), you agree to be bound by these Terms 
+                of Service (&quot;Terms&quot;). If you disagree with any part of these terms, you may not access 
                 the Platform.
               </p>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -38,7 +38,7 @@ export default function TermsOfServicePage() {
                 <li>Use the materials for any commercial purpose or public display</li>
                 <li>Attempt to decompile or reverse engineer any software on the Platform</li>
                 <li>Remove any copyright or proprietary notations from the materials</li>
-                <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+                <li>Transfer the materials to another person or &quot;mirror&quot; the materials on any other server</li>
               </ul>
             </section>
 
@@ -67,7 +67,7 @@ export default function TermsOfServicePage() {
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 Our Platform allows you to post, link, store, share and otherwise make available certain 
-                information, text, graphics, or other material ("Content"). You are responsible for the 
+                information, text, graphics, or other material (&quot;Content&quot;). You are responsible for the 
                 Content that you post on or through the Platform.
               </p>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
@@ -163,7 +163,7 @@ export default function TermsOfServicePage() {
                 10. Disclaimer
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                The Platform is provided on an "AS IS" and "AS AVAILABLE" basis. StandardFlow makes no 
+                The Platform is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. StandardFlow makes no 
                 representations or warranties of any kind, express or implied, as to the operation of the 
                 Platform or the information, content, materials, or products included on the Platform.
               </p>
@@ -186,7 +186,7 @@ export default function TermsOfServicePage() {
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 We reserve the right, at our sole discretion, to modify or replace these Terms at any time. 
                 We will provide notice of any material changes by posting the new Terms on this page and 
-                updating the "Last updated" date.
+                updating the &quot;Last updated&quot; date.
               </p>
             </section>
 

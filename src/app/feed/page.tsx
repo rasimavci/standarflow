@@ -210,7 +210,7 @@ export default function FeedPage() {
     setIsSearchMode(false);
     setSearchQuery('');
     loadArticles(0, selectedCategory);
-  }, [selectedCategory]);
+  }, [selectedCategory, loadArticles]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -551,7 +551,7 @@ export default function FeedPage() {
             <div className="text-center py-12">
               <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400">
                 <TrendingUp className="w-5 h-5" />
-                <span className="font-medium">You've reached the end of the feed</span>
+                <span className="font-medium">You&apos;ve reached the end of the feed</span>
               </div>
             </div>
           )}

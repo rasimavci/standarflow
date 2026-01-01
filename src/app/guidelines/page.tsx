@@ -56,8 +56,8 @@ export default function GuidelinesPage() {
                 <li>Respond to investor inquiries within 24-48 hours</li>
                 <li>Be professional and courteous in all communications</li>
                 <li>Be transparent about challenges and risks</li>
-                <li>Don't spam investors with unsolicited messages</li>
-                <li>Respect investors' time and feedback</li>
+                <li>Don&apos;t spam investors with unsolicited messages</li>
+                <li>Respect investors&apos; time and feedback</li>
                 <li>Follow up appropriately after meetings</li>
               </ul>
 
@@ -66,7 +66,7 @@ export default function GuidelinesPage() {
               </h3>
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
                 <li>Exaggerating metrics or making false claims</li>
-                <li>Copying or imitating other founders' content</li>
+                <li>Copying or imitating other founders&apos; content</li>
                 <li>Soliciting investments outside the platform</li>
                 <li>Sharing confidential information publicly</li>
                 <li>Creating multiple accounts</li>
@@ -107,7 +107,7 @@ export default function GuidelinesPage() {
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
                 <li>Respond to founders promptly, even if declining</li>
                 <li>Provide constructive feedback when possible</li>
-                <li>Respect founders' confidential information</li>
+                <li>Respect founders&apos; confidential information</li>
                 <li>Be clear about your investment process and timeline</li>
                 <li>Honor term sheets and commitments</li>
                 <li>Maintain professional boundaries</li>
@@ -119,7 +119,7 @@ export default function GuidelinesPage() {
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
                 <li>Making investment decisions without proper due diligence</li>
                 <li>Requesting equity or fees for introductions</li>
-                <li>Sharing founders' information without permission</li>
+                <li>Sharing founders&apos; information without permission</li>
                 <li>Engaging in conflicts of interest</li>
                 <li>Leading founders on without genuine investment intent</li>
                 <li>Using confidential information for competitive purposes</li>
@@ -149,7 +149,7 @@ export default function GuidelinesPage() {
               </h3>
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
                 <li>Protect your account credentials</li>
-                <li>Don't share others' personal information</li>
+                <li>Don&apos;t share others&apos; personal information</li>
                 <li>Use secure methods for sharing sensitive documents</li>
                 <li>Report any security concerns immediately</li>
                 <li>Review our Privacy Policy regularly</li>
@@ -193,7 +193,7 @@ export default function GuidelinesPage() {
                 If you encounter violations of these guidelines:
               </p>
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
-                <li>Report the issue through the platform's reporting feature</li>
+                <li>Report the issue through the platform&apos;s reporting feature</li>
                 <li>Contact our support team at support@standardflow.com</li>
                 <li>Provide specific details and evidence when possible</li>
               </ul>

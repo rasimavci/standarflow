@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
                 1. Introduction
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                Welcome to StandardFlow ("we," "our," or "us"). We are committed to protecting your 
+                Welcome to StandardFlow (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your 
                 personal information and your right to privacy. This Privacy Policy explains how we 
                 collect, use, disclose, and safeguard your information when you use our platform.
               </p>
@@ -141,7 +141,7 @@ export default function PrivacyPolicyPage() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                9. Children's Privacy
+                9. Children&apos;s Privacy
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Our platform is not intended for individuals under the age of 18. We do not knowingly 
@@ -155,7 +155,7 @@ export default function PrivacyPolicyPage() {
               </h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 We may update our Privacy Policy from time to time. We will notify you of any changes by 
-                posting the new Privacy Policy on this page and updating the "Last updated" date.
+                posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date.
               </p>
             </section>
 
