@@ -56,6 +56,9 @@ export default function Navbar() {
             <Link href="/matchmaking" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
               Match Making
             </Link>
+            <Link href="/fundraising" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+              Fundraising
+            </Link>
             <Link href="/trends" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
               Trends
             </Link>
@@ -249,6 +252,13 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Match Making
+              </Link>
+              <Link
+                href="/fundraising"
+                className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Fundraising
               </Link>
               <Link
                 href="/trends"
