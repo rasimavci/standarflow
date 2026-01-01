@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (founder) {
       const mockUser: User = {
         id: founder.id,
-        name: founder.founderName,
+        name: founder.name,
         email: founder.email,
         avatar: founder.avatar,
         role: "founder",
@@ -97,17 +97,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
     
-    // If no match found, create a generic user
-    const mockUser: User = {
-      id: Math.random().toString(36).substr(2, 9),
-      name: email.split("@")[0],
-      email,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-      role: "founder"
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem("user", JSON.stringify(mockUser));
+    // If no match found, throw error
+    throw new Error("Invalid email or password. Please check your credentials.");
   };
 
   const signup = async (name: string, email: string, password: string) => {

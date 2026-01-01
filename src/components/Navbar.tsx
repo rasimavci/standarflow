@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Menu, X, ChevronDown, User, Settings, LogOut, Bell, Heart, Shield, MessageSquare, UserPlus } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -65,16 +67,6 @@ export default function Navbar() {
             <Link href="/feed" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
               Feed
             </Link>
-            {isAuthenticated && (
-              <Link href="/saved" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
-                Saved
-              </Link>
-            )}
-            {isAuthenticated && (
-              <Link href="/messages" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
-                Messages
-              </Link>
-            )}
             {isAuthenticated && user?.role === 'investor' && (
               <Link href="/requests" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition relative">
                 Requests
@@ -85,12 +77,20 @@ export default function Navbar() {
                 )}
               </Link>
             )}
-            <Link href="/investors/apply" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
-              For Investors
-            </Link>
-            <Link href="/#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
-              Features
-            </Link>
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link href="/investors/apply" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+                  For Investors
+                </Link>
+                <Link href="/#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
+                  Features
+                </Link>
+              </>
+            )}
             {!isAuthenticated && (
               <Link href="/#apply" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition">
                 Apply Now
@@ -163,6 +163,21 @@ export default function Navbar() {
                         <Heart className="w-4 h-4" />
                         Saved
                       </Link>
+                      <Link
+                        href="/messages"
+                        className="flex items-center justify-between gap-3 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        onClick={() => setProfileMenuOpen(false)}
+                      >
+                        <div className="flex items-center gap-3">
+                          <MessageSquare className="w-4 h-4" />
+                          Messages
+                        </div>
+                        {unreadCount > 0 && (
+                          <span className="bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
+                            {unreadCount}
+                          </span>
+                        )}
+                      </Link>
                       {user.role === 'investor' && (
                         <Link
                           href="/requests"
@@ -201,6 +216,7 @@ export default function Navbar() {
                         onClick={() => {
                           setProfileMenuOpen(false);
                           logout();
+                          router.push('/');
                         }}
                         className="flex items-center gap-3 px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
                       >
@@ -274,29 +290,6 @@ export default function Navbar() {
               >
                 Feed
               </Link>
-              {isAuthenticated && (
-                <Link
-                  href="/saved"
-                  className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Saved
-                </Link>
-              )}
-              {isAuthenticated && (
-                <Link
-                  href="/messages"
-                  className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex items-center justify-between"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span>Messages</span>
-                  {unreadCount > 0 && (
-                    <span className="bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
-                      {unreadCount > 9 ? '9+' : unreadCount}
-                    </span>
-                  )}
-                </Link>
-              )}
               {isAuthenticated && user?.role === 'investor' && (
                 <Link
                   href="/requests"
@@ -320,20 +313,32 @@ export default function Navbar() {
                   Admin Panel
                 </Link>
               )}
-              <Link
-                href="/investors/apply"
-                className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                For Investors
-              </Link>
-              <Link
-                href="/#features"
-                className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Features
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href="/dashboard"
+                  className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/investors/apply"
+                    className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    For Investors
+                  </Link>
+                  <Link
+                    href="/#features"
+                    className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Features
+                  </Link>
+                </>
+              )}
               {!isAuthenticated && (
                 <Link
                   href="/#apply"
@@ -371,6 +376,7 @@ export default function Navbar() {
                       onClick={() => {
                         setMobileMenuOpen(false);
                         logout();
+                        router.push('/');
                       }}
                       className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
                     >

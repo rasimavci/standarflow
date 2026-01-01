@@ -6,7 +6,10 @@
     "firm": "Sequoia Capital",
     "type": "VC",
     "ticket_size": "$5M–$20M",
-    "countries": ["United States", "Canada"],
+    "countries": [
+      "United States",
+      "Canada"
+    ],
     "contacts": [
       {
         "name": "Sarah Chen",
@@ -44,7 +47,9 @@
     "firm": "Andreessen Horowitz",
     "type": "VC",
     "ticket_size": "$2M–$10M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Michael Rodriguez",
@@ -93,7 +98,10 @@
     "firm": "Accel Partners",
     "type": "VC",
     "ticket_size": "$1M–$15M",
-    "countries": ["United States", "United Kingdom"],
+    "countries": [
+      "United States",
+      "United Kingdom"
+    ],
     "contacts": [
       {
         "name": "Emily Watson",
@@ -121,7 +129,10 @@
       "Poshmark"
     ],
     "dealsCompleted": 42,
-    "favorites": [],
+    "favorites": [
+      3,
+      9
+    ],
     "createdAt": "2024-02-08T13:15:00.000Z",
     "status": "active"
   },
@@ -132,7 +143,9 @@
     "firm": "Kleiner Perkins",
     "type": "VC",
     "ticket_size": "$10M–$50M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "James Park",
@@ -171,7 +184,9 @@
     "firm": "Benchmark Capital",
     "type": "VC",
     "ticket_size": "$3M–$12M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Lisa Kumar",
@@ -209,7 +224,9 @@
     "firm": "Greylock Partners",
     "type": "VC",
     "ticket_size": "$2M–$8M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "David Thompson",
@@ -247,7 +264,10 @@
     "firm": "Lightspeed Venture",
     "type": "VC",
     "ticket_size": "$8M–$25M",
-    "countries": ["United States", "Canada"],
+    "countries": [
+      "United States",
+      "Canada"
+    ],
     "contacts": [
       {
         "name": "Rachel Martinez",
@@ -285,7 +305,10 @@
     "firm": "Index Ventures",
     "type": "VC",
     "ticket_size": "$4M–$18M",
-    "countries": ["United States", "United Kingdom"],
+    "countries": [
+      "United States",
+      "United Kingdom"
+    ],
     "contacts": [
       {
         "name": "Alex Johnson",
@@ -324,7 +347,9 @@
     "firm": "New Enterprise Associates",
     "type": "VC",
     "ticket_size": "$10M–$30M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Nina Patel",
@@ -363,7 +388,9 @@
     "firm": "GV (Google Ventures)",
     "type": "Corporate VC",
     "ticket_size": "$3M–$15M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Robert Chang",
@@ -401,7 +428,9 @@
     "firm": "NFX",
     "type": "VC",
     "ticket_size": "$500K–$5M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Amanda Foster",
@@ -439,7 +468,9 @@
     "firm": "Khosla Ventures",
     "type": "VC",
     "ticket_size": "$5M–$25M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Thomas Wright",
@@ -478,7 +509,10 @@
     "firm": "Insight Partners",
     "type": "Growth Equity",
     "ticket_size": "$20M–$100M",
-    "countries": ["United States", "Europe"],
+    "countries": [
+      "United States",
+      "Europe"
+    ],
     "contacts": [
       {
         "name": "Sophia Lee",
@@ -517,7 +551,10 @@
     "firm": "Bessemer Venture Partners",
     "type": "VC",
     "ticket_size": "$7M–$20M",
-    "countries": ["United States", "Israel"],
+    "countries": [
+      "United States",
+      "Israel"
+    ],
     "contacts": [
       {
         "name": "Marcus Williams",
@@ -555,7 +592,10 @@
     "firm": "Matrix Partners",
     "type": "VC",
     "ticket_size": "$2M–$10M",
-    "countries": ["United States", "China"],
+    "countries": [
+      "United States",
+      "China"
+    ],
     "contacts": [
       {
         "name": "Jennifer Zhang",
@@ -593,7 +633,9 @@
     "firm": "Spark Capital",
     "type": "VC",
     "ticket_size": "$3M–$15M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Daniel Cohen",
@@ -632,7 +674,9 @@
     "firm": "Forerunner Ventures",
     "type": "VC",
     "ticket_size": "$1M–$8M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Victoria Santos",
@@ -671,7 +715,9 @@
     "firm": "Foundry Group",
     "type": "VC",
     "ticket_size": "$5M–$20M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Kevin Anderson",
@@ -709,7 +755,9 @@
     "firm": "Canaan Partners",
     "type": "VC",
     "ticket_size": "$10M–$40M",
-    "countries": ["United States"],
+    "countries": [
+      "United States"
+    ],
     "contacts": [
       {
         "name": "Michelle Tan",
@@ -748,7 +796,10 @@
     "firm": "Mayfield Fund",
     "type": "VC",
     "ticket_size": "$4M–$18M",
-    "countries": ["United States", "India"],
+    "countries": [
+      "United States",
+      "India"
+    ],
     "contacts": [
       {
         "name": "Brian Miller",

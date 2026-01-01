@@ -90,7 +90,12 @@
     "description": "Cross-border payment solution for emerging markets.",
     "traction": "$500K processed monthly, 1K+ users",
     "team": "12 employees",
-    "favorites": [],
+    "favorites": [
+      2,
+      3,
+      5,
+      15
+    ],
     "createdAt": "2024-04-12T16:30:00.000Z",
     "status": "active"
   },

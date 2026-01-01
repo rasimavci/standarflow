@@ -132,7 +132,7 @@ export default function FeedPage() {
       // Handle specific error codes
       if (!response.ok) {
         if (response.status === 402) {
-          setError('API limit reached. Please try again later or upgrade your API plan.');
+          setError('The Financial Modeling Prep API has reached its limit. The API key needs to be upgraded or replaced. Please contact the administrator or try again later.');
         } else if (response.status === 429) {
           setError('Too many requests. Please wait a moment and try again.');
         } else if (response.status === 401 || response.status === 403) {
@@ -142,6 +142,7 @@ export default function FeedPage() {
         }
         if (pageNum === 0) setArticles([]);
         setHasMore(false);
+        setLoading(false);
         return;
       }
 
